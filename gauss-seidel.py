@@ -22,30 +22,30 @@ def norma(v,x):
     
     """
     # ESCREVA SEU CODIGO AQUI  
-    n = len(A)
+    n = len(A) # pegando o tamanho da matriz A
     x = [0 for i in range(n)] #inicia o vetor com n elementos
     v = [0 for i in range(n)] #inicia o vetor com n elementos
     tem = [0 for i in range(n)] #inicia o vetor com n elementos
     #x = v[:]
-    contador = 0
+    contador = 0 # numero de interações
     
     for i in range(0,n):
-        if A[i][i] !=0:
+        if A[i][i] !=0: # verificando se o pivo não é nulo
             for j in range(0,n):
-                if i!= j:
+                if i!= j: # se o pivo for diferente da linha:
                     A[i][j] = A[i][j]/A[i][i] #divide os elementos da matriz pelos pivo
             b[i] = b[i]/A[i][i] # divide o vetor solução pelo pivo
-            A[i][i] = 0.0
+            A[i][i] = 0.0 #zera o pivo
     
     
     while contador < iterMax:         
-        for i in range(0,n):
-            tem[i]=sum([A[i][j]*v[j] for j in range(0,n) if i != j])
+        for i in range(0,n): # percorrer todos os elementos da matriz
+            tem[i]=sum([A[i][j]*v[j] for j in range(0,n) if i != j]) # x(k) = somatorio das linhas * x(k) 
             #print(tem)
             v[i] = (b[i] - tem[i]) #x(k+1) = vetor solução - (elementos da matriz * x(k))
             #print(v)
-        if norma(v, x) < epsilon:
-            return v
+        if norma(v, x) < epsilon: 
+            return v # retorna o valor se a norma for menor que o epsilon
         
         x = v[:]
         contador = contador+1
